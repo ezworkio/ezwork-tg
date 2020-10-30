@@ -1,0 +1,31 @@
+version: '3.5'
+
+services:
+  ezwork-tg:
+    container_name: ezwork-tg
+    build:
+      context: .
+    restart: always
+    environment:
+      ENV_CONFIG: stage
+      DB_USER: ezworker
+      DB_PASSWORD: ezworker
+      DB_NAME: ezwork
+      DB_HOST: ezwork-db
+      DB_PORT: 5432
+      RABBITMQ_HOST: ezwork-rabbit
+      RABBITMQ_USER: rmq
+      RABBITMQ_PASSWORD: Kash6ahw
+    command: python3 tg_bot.py
+    networks:
+      - ezwork-db
+      - ezwork-rabbit
+
+networks:
+  ezwork-db:
+    external:
+      name: ezwork-db
+
+  ezwork-rabbit:
+    external:
+      name: ezwork-rabbit
