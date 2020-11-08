@@ -41,7 +41,7 @@ def notificator(context):
         data = rabbit_get['data']
         method_frame = rabbit_get['method_frame']
         if data:
-            if data['service'] == 'mailer':
+            if data['service'] == 'tg':
                 if data['action'] == 'landing_form':
                     rabbit.channel.basic_ack(delivery_tag=method_frame.delivery_tag)
 
